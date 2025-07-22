@@ -16,6 +16,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
 
   onAuthStateChanged(authh, (user) => {
     if (!user) {
-      window.location.href = "login.html";
+      window.location.href = "index.html";
     }
   });
