@@ -10,19 +10,6 @@
       window.location.href = "index.html";
     });
   });
-
-function toggleDarkMode() {
-      document.body.classList.toggle('bg-dark');
-      document.body.classList.toggle('text-light');
-    }
-
-    function toggleAssistant() {
-    const panel = document.getElementById("ai-assistant-panel");
-    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
-  }
-
- 
-
   // Your Firebase config
   const firebaseConfig = {
     apiKey: "AIzaSyDvFaH5h4KI3x4e4Vm9mMiwE73vBO0GPl0",
