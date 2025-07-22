@@ -6,7 +6,7 @@
     authDomain: "spyder-7967e.firebaseapp.com",
     databaseURL: "https://spyder-7967e-default-rtdb.firebaseio.com",
     projectId: "spyder-7967e",
-    storageBucket: "spyder-7967e.firebasestorage.app",
+   storageBucket: "spyder-7967e.appspot.com",
     messagingSenderId: "100352332121",
     appId: "1:100352332121:web:668d283297679d6a7f3c48"
   };
