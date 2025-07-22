@@ -21,43 +21,7 @@ function toggleDarkMode() {
     panel.style.display = panel.style.display === "flex" ? "none" : "flex";
   }
 
-  function sendAIMessage() {
-    const input = document.getElementById("ai-input");
-    const msg = input.value.trim();
-    if (!msg) return;
-
-    const chatBody = document.getElementById("chat-body");
-    const userMsg = document.createElement("div");
-    userMsg.className = "ai-message user";
-    userMsg.innerText = msg;
-    chatBody.appendChild(userMsg);
-
-    input.value = "";
-
-    setTimeout(() => {
-      const botMsg = document.createElement("div");
-      botMsg.className = "ai-message bot";
-      botMsg.innerText = getMockAIResponse(msg);
-      chatBody.appendChild(botMsg);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 600);
-  }
-
-  function handleAIInput(event) {
-    if (event.key === "Enter") {
-      sendAIMessage();
-    }
-  }
-
-  function getMockAIResponse(input) {
-    const lower = input.toLowerCase();
-    if (lower.includes("location")) return "Fetching live location...";
-    if (lower.includes("battery")) return "Battery is at 87%. Charging: No";
-    if (lower.includes("camera")) return "Launching camera remotely...";
-    if (lower.includes("logs")) return "Opening SMS/Call logs...";
-    return "I'm still learning. Please try a supported command like 'battery', 'location', or 'camera'.";
-  }
-
+ 
 
   // Your Firebase config
   const firebaseConfig = {
