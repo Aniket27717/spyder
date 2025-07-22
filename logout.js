@@ -12,9 +12,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebas
   };
 
   const app = initializeApp(firebaseConfig);
-  const authh = getAuth(app);
+  const auth = getAuth(app);
 
-  onAuthStateChanged(authh, (user) => {
+  onAuthStateChanged(auth, (user) => {
     if (!user) {
       window.location.href = "index.html";
     }
