@@ -21,7 +21,7 @@
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      window.location.href = "index.html";
+      window.location.href = "dashboard.html";
     } catch (error) {
       errorMsg.textContent = "Invalid credentials. Try again.";
     }
