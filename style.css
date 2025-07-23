@@ -185,7 +185,7 @@
 }
 #map {
   width: 100%;
-  height: 535px; /* or 100% if parent has fixed height */
+  height: 550px; /* or 100% if parent has fixed height */
 }
 .crossLocation{
   color: white;
